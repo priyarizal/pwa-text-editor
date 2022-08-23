@@ -22,13 +22,36 @@ module.exports = () => {
       new HtmlWebpackPlugin({
         title: 'Client Server',
         template: './index.html',
-      })
-    
+      }),
+      // Injects custom service worker
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
+      }),
+
+      // Creates a manifest file 
+      new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
+        name: 'Text Editor',
+        short_name: 'Editor',
+        description: 'For editing text and code!',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
+        start_url: '/',
+        publicPath: '/',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
+      }),
     ],
 
-
     module: {
-         // CSS loaders
+      // CSS loaders
       rules: [
         {
           test: /\.css$/i,
@@ -37,7 +60,7 @@ module.exports = () => {
         {
           test: /\.m?js$/,
           exclude: /node_modules/,
-           // we're using babel-loader to use ES6.
+          // we're using babel-loader to use ES6.
           use: {
             loader: 'babel-loader',
             options: {
