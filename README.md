@@ -1,4 +1,4 @@
-# pwa-text-editor
+# Progressive Web Application: Text Editor
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -81,6 +81,7 @@ export const putDb = async (content) => {
 - Express.js
 - Webpack
 - Babel
+- IndexedDB
 
 ## App Demo
 ![gif of demo](./images/demo.gif)
